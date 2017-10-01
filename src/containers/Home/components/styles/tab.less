@@ -1,0 +1,32 @@
+.tab {
+  position: relative;
+  background: rgb(249, 249, 249);
+  padding: 0.742rem 0;
+  .tab-list {
+    width: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: pointer;
+    color: rgb(74, 74, 74);
+    i {
+      display: block;
+      font-size: 1rem;
+      transform: scale(0.85);
+      font-style: normal;
+    }
+    &:first-child {
+      border-right: 0.0833rem solid rgb(187, 187, 187);
+    }
+  }
+}
+.border-bottom {
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  display: inline-block;
+  width: 50%;
+  height: 0.1667rem;
+  background: rgb(191, 0, 17);
+  transition: all .15s linear;
+}
