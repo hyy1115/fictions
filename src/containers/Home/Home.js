@@ -8,6 +8,7 @@ import Header from './components/Header'
 import Tab from './components/Tab'
 import MyScroll from 'containers/Commons/MyScroll'
 import Add from './components/Add'
+import Community from './components/Community'
 import './styles/home.less'
 
 export default class Home extends React.Component {
@@ -17,7 +18,32 @@ export default class Home extends React.Component {
         this.state = {
             tabId: 1,
             tabData: ['追书架', '追书社区'],
-            height: 0
+            height: 0,
+            community: [{
+                icon: require('./files/dynamic.svg'),
+                text: '动态',
+                subtitle: ''
+            }, {
+                icon: require('./files/discuss.svg'),
+                text: '综合讨论区',
+                subtitle: ''
+            }, {
+                icon: require('./files/review.svg'),
+                text: '书评区',
+                subtitle: '[找书必看]'
+            }, {
+                icon: require('./files/helpEach.svg'),
+                text: '书荒互助区',
+                subtitle: ''
+            }, {
+                icon: require('./files/originality.svg'),
+                text: '原创区',
+                subtitle: ''
+            }, {
+                icon: require('./files/girl.svg'),
+                text: '女生区',
+                subtitle: ''
+            }]
         }
         this.tabClick = this.tabClick.bind(this)
         this.renderTab = this.renderTab.bind(this)
@@ -30,22 +56,24 @@ export default class Home extends React.Component {
     tabClick(key) {
         this.setState(() => ({...this.state, tabId: key}))
     }
-    renderTab(tabId) {
+    renderTab(tabId, community) {
         if (tabId == 1) {
             return (
                 <Add />
             )
+        } else {
+            return <Community data={community}/>
         }
     }
 
     render() {
-        const { tabData, tabId, height } = this.state
+        const { tabData, tabId, height, community } = this.state
         return (
             <div className="home">
                 <Header title={`追书神器`} />
                 <Tab data={tabData} tabId={tabId} tabClick={this.tabClick} />
                 <MyScroll ID={`Bookcase`} height={height + 'px'}>
-                    {this.renderTab(tabId)}
+                    {this.renderTab(tabId, community)}
                 </MyScroll>
             </div>
         )
