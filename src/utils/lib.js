@@ -9,3 +9,14 @@ export function getClientHeight() {
     }
     return winHeight
 }
+// 获取浏览器窗口宽度
+export function getClientWidth() {
+    if (window.innerWidth)
+        var winWidth = window.innerWidth;
+    else if ((document.body) && (document.body.clientWidth))
+        var winWidth = document.body.clientWidth;
+    if (document.documentElement && document.documentElement.clientWidth && document.documentElement.clientWidth) {
+        var winWidth = document.documentElement.clientWidth;
+    }
+    return winWidth
+}

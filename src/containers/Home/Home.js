@@ -3,7 +3,7 @@
  */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getClientHeight } from 'utils/lib'
+import { getClientHeight, getClientWidth } from 'utils/lib'
 import Header from './components/Header'
 import Tab from './components/Tab'
 import MyScroll from 'containers/Commons/MyScroll'
@@ -19,6 +19,8 @@ export default class Home extends React.Component {
             tabId: 1,
             tabData: ['追书架', '追书社区'],
             height: 0,
+            leftLocation: 25,
+            rightLocation: 75,
             community: [{
                 icon: require('./files/dynamic.svg'),
                 text: '动态',
@@ -45,8 +47,13 @@ export default class Home extends React.Component {
                 subtitle: ''
             }]
         }
+        this.start = 0
+        this.end = 0
         this.tabClick = this.tabClick.bind(this)
         this.renderTab = this.renderTab.bind(this)
+        this.initStart = this.initStart.bind(this)
+        this.initMove = this.initMove.bind(this)
+        this.initEnd = this.initEnd.bind(this)
     }
     componentDidMount() {
         const header = document.querySelector('.header')
@@ -65,17 +72,42 @@ export default class Home extends React.Component {
             return <Community data={community}/>
         }
     }
-
+    initStart(event) {
+        this.start = event.targetTouches[0].pageX
+    }
+    initMove(event) {
+        const { leftBar, rightPlus } = this.props
+        this.end = event.targetTouches[0].pageX
+        if (leftBar) {
+        
+        } else if (rightPlus) {
+            this.setState(() => ({...this.state, rightLocation: Math.abs((1 - this.end/getClientWidth()) * 100)}))
+        }
+        this.start = this.end
+    }
+    initEnd() {
+        this.props.initState()
+        this.setState(() => ({...this.state, rightLocation: 75, leftLocation: 25}))
+    }
     render() {
-        const { tabData, tabId, height, community } = this.state
-        const { barsClick, leftBar } = this.props
+        const { tabData, tabId, height, community, leftLocation, rightLocation } = this.state
+        const { barsClick, leftBar, plusClick, rightPlus, initState } = this.props
         return (
-            <div className="home" style={{transform: leftBar ? 'translateX(25%)' : 'translateX(0)'}}>
-                <Header title={`追书神器`} barsClick={barsClick} />
+            <div className="home" style={{transform: leftBar ? `translateX(${leftLocation}%)` : rightPlus ? `translateX(-${rightLocation}%)` : 'translateX(0)'}}>
+                <Header title={`追书神器`} barsClick={barsClick} plusClick={plusClick} />
                 <Tab data={tabData} tabId={tabId} tabClick={this.tabClick} />
                 <MyScroll ID={`Bookcase`} height={height + 'px'}>
                     {this.renderTab(tabId, community)}
                 </MyScroll>
+                {
+                    (leftBar || rightPlus) &&
+                    <div style={{width: '100%', height: '100vh', opacity: 0, position: 'absolute', left: 0, top: 0}}
+                         onClick={() => initState()}
+                         onTouchStart={(event) => this.initStart(event)}
+                         onTouchMove={(event) => this.initMove(event)}
+                         onTouchEnd={(event) => this.initEnd(event)}
+                    ></div>
+                }
             </div>
         )
     }
