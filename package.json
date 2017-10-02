@@ -8,7 +8,6 @@
     "lint": "eslint src",
     "build-mac": "export NODE_ENV=production && webpack --progress --hide-modules --config webpack.config.js",
     "build-win": "set NODE_ENV=production&& webpack --progress --hide-modules --config webpack.config.js",
-    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -41,8 +40,6 @@
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.8.4",
     "image-webpack-loader": "^3.1.0",
-    "jest": "^19.0.2",
-    "jest-runtime": "^19.0.2",
     "less": "^2.7.1",
     "less-loader": "^2.2.2",
     "postcss-loader": "^0.7.0",
