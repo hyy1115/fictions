@@ -19,18 +19,18 @@ window.isEqual = isEqual
 window.debounce = debounce
 window.isArray = isArray
 
-document.addEventListener('touchmove', (event) => event.preventDefault(), false);
+document.addEventListener('touchmove', (event) => event.preventDefault(), false)
 //解决移动端300毫秒延迟
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function() {
-        FastClick.attach(document.body);
+        FastClick.attach(document.body)
     }, false);
 }
-
+const supportsHistory = 'pushState' in window.history
 const render = Component =>
     ReactDOM.render(
         <AppContainer>
-            <BrowserRouter>
+            <BrowserRouter forceRefresh={!supportsHistory}>
                 <Component />
             </BrowserRouter>
         </AppContainer>,

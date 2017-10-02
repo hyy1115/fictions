@@ -5,12 +5,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './styles/header.less'
 const Header = (props) => {
-    const { title, bgColor, barsClick, plusClick } = props
+    const { title, bgColor, barsClick, plusClick, plusShow=true } = props
     return (
         <header className='header' style={bgColor}>
             <i className={`fa fa-bars left`} onClick={() => barsClick()}></i>
             <span>{title}</span>
-            <i className={`fa fa-plus right`} onClick={() => plusClick()}></i>
+            {
+                plusShow && <i className={`fa fa-plus right`} onClick={() => plusClick()}></i>
+            }
         </header>
     )
 }
