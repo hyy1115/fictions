@@ -68,9 +68,10 @@ export default class Home extends React.Component {
 
     render() {
         const { tabData, tabId, height, community } = this.state
+        const { barsClick, leftBar } = this.props
         return (
-            <div className="home">
-                <Header title={`追书神器`} />
+            <div className="home" style={{transform: leftBar ? 'translateX(25%)' : 'translateX(0)'}}>
+                <Header title={`追书神器`} barsClick={barsClick} />
                 <Tab data={tabData} tabId={tabId} tabClick={this.tabClick} />
                 <MyScroll ID={`Bookcase`} height={height + 'px'}>
                     {this.renderTab(tabId, community)}
@@ -78,8 +79,4 @@ export default class Home extends React.Component {
             </div>
         )
     }
-}
-Home.propTypes = {
-    match: PropTypes.object.isRequired,
-    location: PropTypes.object.isRequired
 }

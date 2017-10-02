@@ -5,6 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import App from './App'
+import { BrowserRouter } from 'react-router-dom'
 
 var FastClick = require('fastclick')
 
@@ -18,13 +19,20 @@ window.isEqual = isEqual
 window.debounce = debounce
 window.isArray = isArray
 
+document.addEventListener('touchmove', (event) => event.preventDefault(), false);
 //解决移动端300毫秒延迟
-FastClick.attach(document.body)
+if ('addEventListener' in document) {
+    document.addEventListener('DOMContentLoaded', function() {
+        FastClick.attach(document.body);
+    }, false);
+}
 
 const render = Component =>
     ReactDOM.render(
         <AppContainer>
-            <Component />
+            <BrowserRouter>
+                <Component />
+            </BrowserRouter>
         </AppContainer>,
         document.getElementById('root')
     )

@@ -11,31 +11,32 @@ import SideLeft from 'containers/SideBar/SideLeft'
 import Home from 'containers/Home/Home'
 import ReactChildrenMap from './containers/Commons/ReactChildrenMap'
 
-const routers = [{
-    path: '/',
-    exact: true,
-    main: Home
-}]
-
 export default class App extends React.Component {
-
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+            leftBar: false
+        }
+        this.barsClick = this.barsClick.bind(this)
+    }
     componentDidMount() {
         window.addEventListener('hashchange', () => {
            //this.props.currentAnimate('normal')
         })
     }
-  render() {
-      return (
-          <Router>
-              <div>
-                  {/*<SideLeft />*/}
-                  {
-                      routers.map((v, key) =>
-                          <Route key={key} exact={v.exact} component={v.main} />
-                      )
-                  }
-              </div>
-          </Router>
-    )
-  }
+    barsClick() {
+        console.log(this)
+        this.setState(() => ({...this.state, leftBar: !this.state.leftBar}))
+    }
+    render() {
+        return (
+            <Router>
+                <div>
+                    <SideLeft />
+                    <Route exact={true} render={() => <Home barsClick={this.barsClick} leftBar={this.state.leftBar}/>} />
+                </div>
+            </Router>
+        )
+    }
 }
