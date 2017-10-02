@@ -66,7 +66,7 @@ export default class Home extends React.Component {
     renderTab(tabId, community) {
         if (tabId == 1) {
             return (
-                <Add />
+                <Add addClick={this.props.plusClick} />
             )
         } else {
             return <Community data={community}/>
