@@ -7,7 +7,7 @@ import './styles/community.less'
 const Community = (props) => {
     const { data=[] } = props
     return [
-        <div className="community">
+        <div key={`A`} className="community">
             {
                 data.map((v, key) => {
                     return (
@@ -21,7 +21,7 @@ const Community = (props) => {
                 })
             }
         </div>,
-        <div className={`more`}><span>添加追书查看更多追书社区</span></div>
+        <div key={`B`} className={`more`}><span>添加追书查看更多追书社区</span></div>
     ]
 }
 export default Community

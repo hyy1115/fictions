@@ -76,11 +76,9 @@ export default class Home extends React.Component {
         this.start = event.targetTouches[0].pageX
     }
     initMove(event) {
-        const { leftBar, rightPlus } = this.props
+        const { rightPlus } = this.props
         this.end = event.targetTouches[0].pageX
-        if (leftBar) {
-        
-        } else if (rightPlus) {
+        if (rightPlus) {
             this.setState(() => ({...this.state, rightLocation: Math.abs((1 - this.end/getClientWidth()) * 100)}))
         }
         this.start = this.end
