@@ -5,7 +5,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import App from './App'
-import { BrowserRouter } from 'react-router-dom'
+//import { BrowserRouter } from 'react-router-dom'
 
 var FastClick = require('fastclick')
 
@@ -26,13 +26,11 @@ if ('addEventListener' in document) {
         FastClick.attach(document.body)
     }, false);
 }
-const supportsHistory = 'pushState' in window.history
+//const supportsHistory = 'pushState' in window.history
 const render = Component =>
     ReactDOM.render(
         <AppContainer>
-            <BrowserRouter forceRefresh={!supportsHistory}>
-                <Component />
-            </BrowserRouter>
+            <Component />
         </AppContainer>,
         document.getElementById('root')
     )

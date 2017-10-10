@@ -2,11 +2,6 @@
  * Created by yongyuehuang on 2017/8/27.
  */
 'use strict';
-/*
-* 如果你在移动端项目尝试过IScroll5，就会发现他的卡顿问题很难完美解决，于是我就在react中封装了下面这个性能更好的组件。
-* 该组件的作用和臭名昭著的IScroll插件相同，但是这个组件比IScroll封装的更好用，我已经在移动端项目全部页面使用了该组件。
-* 组件使用教程可以查看我写的一篇博客：https://segmentfault.com/a/1190000010042474
-* */
 exports.__esModule = true;
 
 var _react = require('react');

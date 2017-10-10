@@ -22,12 +22,10 @@ new WebpackDevServer(webpack(config), {
     },
     setup(app) {
         app.use(errorOverlayMiddleware())
-        if (process.env.NODE_ENV !== 'production') {
-            app.use('/book/*', proxy({
-                target: 'https://www.easy-mock.com/mock/593611b991470c0ac101d474',
-                secure: false
-            }))
-        }
+        app.use('/majax/*', proxy({
+            target: 'https://m.qidian.com',
+            secure: false
+        }))
     }
 }).listen(webpackServerConfig.port, webpackServerConfig.host, function (err, result) {
     if (err) {

@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 import { Route, BrowserRouter as Router } from 'react-router-dom'
 import { withRouter } from 'react-router'
 import { getClientWidth } from 'utils/lib'
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup'
-import createHistory from 'history/createHashHistory'
-const history = createHistory()
 
 import './app.less'
 
@@ -14,10 +11,8 @@ import SideLeft from 'containers/SideBar/SideLeft'
 import Home from 'containers/Home/Home'
 import SideRight from 'containers/SideBar/SideRight'
 import Message from 'containers/Message/Message'
-import ReactChildrenMap from './containers/Commons/ReactChildrenMap'
-
-class App extends React.Component {
-    
+import Leaderboard from 'containers/Leaderboard/Leaderboard'
+export default class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -91,8 +86,9 @@ class App extends React.Component {
                                    />
                                }}
                         />
+                        <Route path={`/leaderboard/:type`} component={Leaderboard} />
                     </div>
-                    <SideRight />
+                    <SideRight initState={this.initState} />
                 </div>
             </Router>
         )
@@ -101,4 +97,3 @@ class App extends React.Component {
 App.propTypes = {
     match: PropTypes.object
 }
-export default withRouter(App)

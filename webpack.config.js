@@ -25,6 +25,7 @@ var plugins = [
 var app = ['./entry']
 if (isPro) {
   plugins.push(
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new ExtractTextPlugin({
           filename: 'styles.css'
       }),

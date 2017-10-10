@@ -6,8 +6,7 @@
     "start": "node server.js",
     "start-ip": "HOSTIP=192.168.23.4 node server.js",
     "lint": "eslint src",
-    "build-mac": "export NODE_ENV=production && webpack --progress --hide-modules --config webpack.config.js",
-    "build-win": "set NODE_ENV=production&& webpack --progress --hide-modules --config webpack.config.js"
+    "build": "export NODE_ENV=production && webpack --progress --hide-modules --config webpack.config.js"
   },
   "repository": {
     "type": "git",
@@ -59,11 +58,13 @@
     "history": "^4.6.1",
     "http-proxy-middleware": "^0.17.4",
     "jroll": "^2.5.0",
+    "jsonp": "^0.2.1",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-hot-loader": "^3.0.0-beta.7",
     "react-router": "^4.2.0",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "xdomain": "^0.7.3"
   }
 }
