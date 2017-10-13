@@ -65,7 +65,7 @@ export default class Leaderboard extends React.Component {
         }
         const result = await instance.get(`/rank/${type}/${params}`)
         if (result) {
-            rankData[tabId] = result.data.data
+            rankData[tabId] = result.data.bookRank
         }
         await this.setState(() => ({...this.state, rankData: rankData}))
     }

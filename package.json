@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "start": "node server.js",
-    "start-ip": "HOSTIP=192.168.23.4 node server.js",
+    "start-ip": "HOSTIP=192.168.23.7 node server.js",
     "lint": "eslint src",
     "build": "export NODE_ENV=production && webpack --progress --hide-modules --config webpack.config.js"
   },
