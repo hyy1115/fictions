@@ -9,7 +9,7 @@ export default class RankList extends React.Component {
                 {
                     data.map((v, key) => {
                         return (
-                            <Link key={key} to={``} className={`clearfix`}>
+                            <Link key={key} to={`/bookDetails/${v.bid}`} className={`clearfix`}>
                                 <img src={`https://qidian.qpic.cn/qdbimg/349573/${v.bid}/150`} />
                                 <div className={`rank-list-right`}>
                                     <p className={`b-name`}>{v.bName}</p>

@@ -1,9 +1,12 @@
 import React from 'react'
+import { Route, BrowserRouter as Router } from 'react-router-dom'
+
 import Header from 'containers/Commons/Header'
 import Tab from 'containers/Home/components/Tab'
 import LeftBar from './components/LeftBar'
 import MyScroll from 'containers/Commons/MyScroll'
 import RankList from './components/RankList'
+import BookDetails from 'containers/BookDetails/BookDetails'
 import './styles/leaderboard.less'
 import instance from 'utils/instance'
 import { getClientHeight } from 'utils/lib'
@@ -85,7 +88,12 @@ export default class Leaderboard extends React.Component {
                         <RankList data={rankData[tabId] || []}/>
                     </MyScroll>
                 </div>
-            </MyScroll>
+            </MyScroll>,
+            <Router key={`LR`}>
+                <Route path={`/bookDetails/:bId`} render={() => {
+                    return <BookDetails />
+                }}></Route>
+            </Router>
         ]
     }
 }
