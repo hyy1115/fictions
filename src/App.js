@@ -47,6 +47,7 @@ export default class App extends React.Component {
             this.setState(() => ({...this.state, rightLocation: Math.abs((1 - this.end/getClientWidth()) * 100)}))
         }
         this.start = this.end
+        window.requestAnimationFrame(this.initMove(event))
     }
     async initEnd() {
         await this.setState(() => ({...this.state, rightLocation: 75, leftLocation: 25}))

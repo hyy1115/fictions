@@ -3,5 +3,5 @@
  */
 module.exports = {
     host: process.env.HOSTIP ? process.env.HOSTIP : 'localhost',
-    port: 3017
+    port: 3019
 }

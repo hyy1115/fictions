@@ -4,7 +4,7 @@
 var webpack = require('webpack')
 var WebpackDevServer = require('webpack-dev-server')
 var config = require('./webpack.config')
-const errorOverlayMiddleware = require('react-error-overlay/middleware')
+var path = require('path')
 const webpackServerConfig = require('./webpackServerConfig')
 var proxy = require('http-proxy-middleware')
 
@@ -21,11 +21,13 @@ new WebpackDevServer(webpack(config), {
         chunks: false
     },
     setup(app) {
-        app.use(errorOverlayMiddleware())
         app.use('/majax/*', proxy({
             target: 'https://m.qidian.com',
             secure: false
         }))
+        //app.use('/', function(req, res) {
+        //    res.sendFile(path.join(__dirname,'index.html'))
+        //})
     }
 }).listen(webpackServerConfig.port, webpackServerConfig.host, function (err, result) {
     if (err) {
